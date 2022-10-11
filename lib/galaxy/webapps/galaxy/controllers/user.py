@@ -102,7 +102,7 @@ class User(BaseUIController, UsesFormDefinitionsMixin, CreatesApiKeysMixin):
         Does the autoregistration if enabled. Returns a message
         """
         try:
-            autoreg = trans.app.auth_manager.check_auto_registration(trans, login, password, trans.request)
+            autoreg = trans.app.auth_manager.check_auto_registration(trans, login, password)
         except Conflict as conflict:
             return f"Auto-registration failed, {conflict}", None
         user = None

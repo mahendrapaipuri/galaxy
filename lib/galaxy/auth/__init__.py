@@ -40,7 +40,7 @@ class AuthManager:
                 break
         return message, status
 
-    def check_auto_registration(self, trans, login, password, request, no_password_check=False):
+    def check_auto_registration(self, trans, login, password, no_password_check=False):
         """
         Checks the username/email & password using auth providers in order.
         If a match is found, returns the 'auto-register' option for that provider.
@@ -57,7 +57,7 @@ class AuthManager:
                 log.debug(f"Unable to find module: {options}")
             else:
                 options["no_password_check"] = no_password_check
-                auth_results = provider.authenticate(email, username, password, options, request)
+                auth_results = provider.authenticate(email, username, password, options, trans.request)
                 if auth_results[0] is True:
                     try:
                         auth_return = parse_auth_results(trans, auth_results, options)

@@ -97,7 +97,7 @@ class UserManager(base.ModelManager, deletable.PurgableManagerMixin):
 
         if message:
             return None, message
-        message, status = trans.app.auth_manager.check_registration_allowed(email, username, password, None)
+        message, status = trans.app.auth_manager.check_registration_allowed(email, username, password, trans.request)
         if message:
             return None, message
         if subscribe:
