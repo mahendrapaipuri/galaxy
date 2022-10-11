@@ -14,7 +14,7 @@ class AuthProvider(metaclass=abc.ABCMeta):
         """Short string providing labelling this plugin"""
 
     @abc.abstractmethod
-    def authenticate(self, email, username, password, options):
+    def authenticate(self, email, username, password, options, request):
         """
         Check that the user credentials are correct.
 
@@ -29,6 +29,8 @@ class AuthProvider(metaclass=abc.ABCMeta):
         :type   password: str
         :param  options: options provided in auth_config_file
         :type   options: dict
+        :param  request: HTTP request object
+        :type   request: GalaxyWebTransaction.request
         :returns:   True: accept user, False: reject user and None: reject user
             and don't try any other providers.  str, str are the email and
             username to register with if accepting. The optional dict may
@@ -37,7 +39,7 @@ class AuthProvider(metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def authenticate_user(self, user, password, options):
+    def authenticate_user(self, user, password, options, request):
         """
         Same as authenticate() method, except an User object is provided instead
         of a username.
@@ -51,6 +53,8 @@ class AuthProvider(metaclass=abc.ABCMeta):
         :type   password: str
         :param  options: options provided in auth_config_file
         :type   options: dict
+        :param  request: HTTP request object
+        :type   request: GalaxyWebTransaction.request
         :returns:   True: accept user, False: reject user and None: reject user
             and don't try any other providers
         :rtype:     bool
