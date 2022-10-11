@@ -174,7 +174,7 @@ class User(BaseUIController, UsesFormDefinitionsMixin, CreatesApiKeysMixin):
                 message += f" Contact: {trans.app.config.error_email_to}."
             return self.message_exception(trans, message, sanitize=False)
         elif not trans.app.auth_manager.check_password(user, password, trans.request):
-            return self.message_exception(trans, "Invalid password.")
+            return self.message_exception(trans, "Login Failed.")
         elif trans.app.config.user_activation_on and not user.active:  # activation is ON and the user is INACTIVE
             if trans.app.config.activation_grace_period != 0:  # grace period is ON
                 if self.is_outside_grace_period(
