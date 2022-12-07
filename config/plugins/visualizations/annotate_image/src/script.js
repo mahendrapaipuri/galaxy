@@ -437,8 +437,9 @@ window.bundleEntries.load = function (opt) {
         });
     };
 
+    const safe_download_url = `${options.root}${dataset.download_url}`;
     $.ajax({
-        url: dataset.download_url,
+        url: safe_download_url,
         success: function(content) {
             const $chartViewer = $("#" + opt.target);
             $chartViewer.html("<img id='image-annotate' src='" + dataset.download_url + "' />");
