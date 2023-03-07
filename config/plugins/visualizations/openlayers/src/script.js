@@ -210,7 +210,7 @@ var MapViewer = (function(mv) {
             mv.createMap(filePath, sourceVec, options, chart, styleFunction, target);
         } else if (fileType === "shp") {
             // Add galaxy prefix
-            const fileUrl = `{options.root}{filePath}`;
+            const fileUrl = `${options.root}${filePath}`;
             axios.get(fileUrl, { responseType: "arraybuffer" }).then(shpfile => {
                 console.debug(shpfile);
                 shp(shpfile.data).then(
